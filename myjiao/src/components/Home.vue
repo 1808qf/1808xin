@@ -1,7 +1,7 @@
 <template>
 	<div class="a-home">
 		<div class="a-home-1">
-			<span @click="map()">设备</span>
+			<span @click="map()">设备1q</span>
 			<span @click="pap()">场景</span>
 		</div>
 		
