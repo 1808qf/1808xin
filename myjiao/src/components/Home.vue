@@ -2,7 +2,8 @@
 	<div class="a-home">
 		<div class="a-home-1">
 			<span @click="map()">设备</span>
-			<span @click="pap()">场景dev2</span>
+			<span @click="pap()">场景</span>
+
 		</div>
 		
 		<img src="../assets/imgs/a-shouye1.jpg" alt="" />
