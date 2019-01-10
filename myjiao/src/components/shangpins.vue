@@ -23,7 +23,7 @@
       </div>
       <div>
         <ul class="cfen">
-          <li class="cfenlei" v-for="item in arr" :key="item"><router-link to="/fenlei" tag="span">{{item}}</router-link></li>
+          <li class="cfenlei" v-for="item in arr" :key="item.id"><router-link to="/fenlei" tag="span">{{item.gtName}}</router-link></li>
         </ul>
         <div class="chantu">
           <p>产品图片</p>
@@ -48,7 +48,7 @@ export default {
   data () {
     return {
     	tit:'商城首页' ,//控制的是头部标题
-      arr:['1','2','3','4','5','6','7','8'],
+      arr:[],
       str:[
         {name:'挂饰空',xiangqing:'智能',qian:'$500'},
         {name:'挂饰空调',xiangqing:'智能',qian:'$500'},
@@ -60,13 +60,17 @@ export default {
   mounted() {
     console.log(this.sto)
     this.$emit('toparent',this.tit)
-    // axios({
-    //   method:'get',
-    //   url:'http://10.8.155.74:8080/airdb/GoodsTypeAll.do'
-    // }).then((data)=>{
-    //   console.log(data.data.data)
-    // })
+    var _this=this;
+    axios({
+      method:'get',
+      url:'http://10.8.155.42:8080/Airdb/GoodsTypeAll.do'
+    }).then((data)=>{
+      console.log(data.data.data)
+      _this.arr=data.data.data
+      
+    })
   },
+  
 }
 </script>
 
