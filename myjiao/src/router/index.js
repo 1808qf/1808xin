@@ -27,6 +27,7 @@ import xiangqing from '@/components/xiangqing'
 import pingjia from '@/components/pingjia'
 import xiangqingye2 from '@/components/xiangqingye2'
 import pinbiao from '@/components/pinbiao'
+import gouwuche from '@/components/gouwuche'
 
 
 //服务页
@@ -127,7 +128,7 @@ export default new Router({
 		
 		
 		{
-      path:'/fenlei',
+      path:'/fenlei/:gtid',
       component:fenlei
     },
     {
@@ -136,7 +137,7 @@ export default new Router({
       component:xiangqingye,
       children:[
         {
-          path:'/xiangqingye2',
+          path:'/xiangqingye2/:xq',
           component:xiangqingye2
         },
         {
@@ -175,6 +176,10 @@ export default new Router({
     {
       path:'/kefu',
       component:kefu
+		},
+		{
+      path:'/gouwuche',
+      component:gouwuche
     },
    
 		

@@ -7,25 +7,25 @@
      </header>
      <section>
          <div class="cleft">
-             <dl>
-                 <dt>tt</dt>
-                 <dd>dd</dd>
+             <dl v-for="item in fenlei" :key="item.id">
+                 <dt><span class="iconfont icon-31dianpu"></span></dt>
+                 <dd>{{item}}</dd>
              </dl>
          </div>
          <div class="cright">
              <div>
                  <p>热门分类</p>
                  <ul>
-                     <li v-for="item in re" :key="item.id"><router-link to="/xiangqingye" tag="span">{{item}}</router-link></li>
+                     <li v-for="item in re" :key="item.id"><router-link to="/xiangqingye" tag="span">{{item.gtName}}</router-link></li>
                  </ul>
                  <p>热门单品</p>
-                 <div class="cdan" v-for="item in xinghao" :key="item.id">
-                     <h2>商品图</h2>
+                 <div class="cdan" v-for="(item,i) in xinghao" :key="i">
+                     <h2><img :src="'http://10.8.155.42:8080/Airdb'+item.goodsImg" alt=""></h2>
                      <div class="cxinghao">
                      <p>型号</p>
-                     <p>{{item.name}}</p>
+                     <p>{{item.goodsName}}</p>
                      <p>价格</p>
-                     <p>{{item.age}}</p>
+                     <p>{{item.goodsPrice}}</p>
                      </div>
                  </div>
              </div>
@@ -41,8 +41,10 @@ export default {
     name:'fenlei',
     data() {
         return {
-            re:['挂壁式空调','挂壁式空调','挂壁式空调','挂壁式空调','挂壁式空调'],
-            xinghao:[{name:'t',age:'3'},{name:'t',age:'3'},{name:'t',age:'3'}]
+            re:[],
+            xinghao:[]
+            ,fenlei:['空调','手机','锅','空调','空调',],
+            sso:'',
         }
     },
     methods: {
@@ -50,11 +52,38 @@ export default {
             this.$router.go(-1)
         }
     },
+    mounted() {
+        this.sso=Number(this.$route.params.gtid)+5
+        //console.log()
+         var _this=this;
+         
+    axios({
+      method:'get',
+      url:'http://10.8.155.42:8080/Airdb/GoodsTypeAll.do'
+    }).then((data)=>{
+      //console.log(data.data.data)
+      _this.re=data.data.data
+    })
+     axios({
+      method:'get',
+      url:'http://10.8.155.42:8080/Airdb/HotGoodsByTypeId.do',
+      //params:{TypeId:this.$route.params.gtid+5}
+      params:{TypeId:this.sso}
+    }).then((data)=>{
+      console.log(data.data.data)
+      _this.xinghao=data.data.data
+      
+      
+    })
+    },
 
 }
 
 </script>
 <style scoped>
+li{
+    list-style: none;
+}
 .hello{
   height: 100vh;
   display: flex;
@@ -89,6 +118,9 @@ section{
     height: 100%;
     background: #eaeaea;
 }
+.cleft dt,.cleft dd{
+    text-align: center;
+}
 .cright{
     margin-left: 25%;
     width: 75%
@@ -109,6 +141,10 @@ section{
 }
 .cdan h2{
     width:30%;
+}
+.cdan img{
+    width: 100%;
+    height: 100%;
 }
 .cxinghao{
     width: 70%;

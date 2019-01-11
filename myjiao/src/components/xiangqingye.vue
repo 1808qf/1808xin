@@ -16,6 +16,7 @@
             <span class="iconfont icon-gouwuche2"></span>
             <mt-button type="primary" @click="foo()">加入购物车</mt-button>
             <mt-button type="danger">立即购买</mt-button>
+            
         </div>
 
      </footer>
@@ -38,7 +39,11 @@ export default {
         },
         foo(){
             console.log(33)
+            location.href='/#/gouwuche'
         }
+    },
+    mounted() {
+        //console.log(this.$route.params.xq)
     },
 
 }

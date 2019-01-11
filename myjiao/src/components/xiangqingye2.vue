@@ -8,10 +8,11 @@
         </mt-swipe>
 
       </div>
-      <ul class="cjieshao">
-          <li>介绍</li>
+      <ul class="cjieshao" v-for="(item,i) in sjz" :key="i">
+          
           <li>特点</li>
-          <li>钱<span>库存</span></li>
+          <li>{{item.goodsStyle}}</li>
+          <li>{{item.goodsPrice}}<span>库存{{item.goodsSales}}</span></li>
       </ul>
       <ul class="cfuwu">
           <li>服务</li>
@@ -37,12 +38,48 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
+    
     name:'xiangqing2',
     data() {
         return {
+            sjz:[],
+            num:"",
             
         }
+    },
+    mounted() {
+        //console.log(shu)
+        this.num=this.$route.params.xq-2
+        console.log(this.num)
+        var _this=this
+        //console.log(this.$route.params.xq)
+        
+        axios({
+      method:'get',
+      url:'http://101.132.188.237:8080/Airdb/selectAllGoods.do'
+    }).then((data)=>{
+     // console.log(data.data.data)
+      
+      _this.sjz.push(data.data.data[_this.num])
+      //console.log(_this.sjz);
+      
+      
+    })
+      axios({
+      method:'get',
+      url:'http://101.132.188.237:8080/Airdb/selectByGoodsId.do',
+      params:{comGid:'6'}
+    }).then((data)=>{
+      console.log(data)
+      
+    //   _this.sjz.push(data.data.data[_this.num])
+    //   console.log(_this.sjz);
+      
+      
+    })
+    
     },
 }
 
