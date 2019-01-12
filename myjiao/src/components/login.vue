@@ -26,7 +26,7 @@ export default {
     return {
      users:'',
      pass:'',
-    
+    token:""
     }
   },
   methods:{
@@ -52,9 +52,12 @@ export default {
 					
 				}else{
 					alert('登陆成功，进入首页')
+					//this.$store.common("cun",_this.token)
+					//console.log(this.$store.store.token)
 					location.href="/home"
 				}
 			} )
+
   	},
   }
 }

@@ -59,14 +59,14 @@ export default {
          
     axios({
       method:'get',
-      url:'http://10.8.155.42:8080/Airdb/GoodsTypeAll.do'
+      url:'http://101.132.188.237:8080/Airdb/GoodsTypeAll.do'
     }).then((data)=>{
       //console.log(data.data.data)
       _this.re=data.data.data
     })
      axios({
       method:'get',
-      url:'http://10.8.155.42:8080/Airdb/HotGoodsByTypeId.do',
+      url:'http://101.132.188.237:8080/Airdb/HotGoodsByTypeId.do',
       //params:{TypeId:this.$route.params.gtid+5}
       params:{TypeId:this.sso}
     }).then((data)=>{

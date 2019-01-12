@@ -9,14 +9,29 @@
 		<h1 class="a-t">您还没有添加设备</h1>
 		<p  class="a-p" @click="tap()"><i class="iconfont icon-chucuo"></i><span >添加设备</span></p>
 		
+		<footer><h1>详情</h1></footer>
 		
-		
+		<ul>
+          <router-link :to="'/kongzhi/'+item.goodsId" tag="li" v-for="item in str"  :key="item.id">
+            <h2>{{item.goodsModel}}</h2>
+            <p>{{item.goodsStyle}}</p>
+            <p>￥{{item.goodsPrice}}</p>
+          </router-link>
+        </ul>
+        
 	</div>
 </template>
 
 <script>
+	import axios from 'axios';
 	export default{
 		name:"Home",
+		data(){
+			return{
+				detail:"",
+				str:[],
+			}
+		},
 		methods:{
 			map(){
 				this.$router.push('/Set')
@@ -32,8 +47,24 @@
 		mounted(){
 			this.$emit('toparent',this.tit)
 			
-			
-			
+			var _this=this;
+//			axios({
+//		      method:'get',
+//		      url:'http://101.132.188.237:8080/Airdb/selectAllGoods.do'
+//		    }).then((data)=>{
+//		      console.log(data.data.data)
+//		      _this.str=data.data.data
+//		      
+//		    })
+		    
+		    
+					axios({
+			method:'get',
+			url:"http://101.132.188.237:8080/Airdb/getUserId.do",
+			  //name、password是接口参数,跟后台相连
+		}).then(function(data){
+			console.log(data)	
+			} )
 			
 		}
 	}
