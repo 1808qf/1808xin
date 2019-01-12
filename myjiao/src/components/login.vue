@@ -1,26 +1,61 @@
 <template>
   <div class="register">
     
-    <header>{{ msg }}</header>
+    <header>
+    	<span @click="map()">登陆&nbsp;/</span>
+    	<span @click="pap()">注册</span>
+    </header>
     <section>
     	<div class="a-reg">登陆</div>
     	<div id="dl">
-			    	<input type="text" id="" placeholder="请输入用户名"/>
-			    	<input type="text" id="" placeholder="请输入密码" />
-			    	<input type="button" id="btn" value="登陆" />
+			    	<input type="text" id="" placeholder="请输入用户名" v-model="users"/>
+			    	<input type="text" id="" placeholder="请输入密码" v-model="pass"/>
+			    	<input type="button" id="btn" value="登陆" @click="login()"/>
     	</div>
+    	
     </section>
    <h1></h1>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name: 'register',
   data () {
     return {
-      msg: '登陆'
+     users:'',
+     pass:'',
+    
     }
+  },
+  methods:{
+  	map(){
+				this.$router.push('/login')
+			},
+		pap(){
+				this.$router.push('/register')
+		},
+		login(){
+  		var _this=this;
+  		console.log(_this.users,_this.pass)
+			axios({
+				method:'get',
+				url:"http://101.132.188.237:8080/Airdb/userlogin.do",
+				params:{name:_this.users,password:_this.pass}  //name、password是接口参数,跟后台相连
+			}).then(function(data){
+				console.log(data)
+				var code=data.data.code
+				console.log(code)
+				if(code==0){
+					alert('登陆失败，请重新登陆')
+					
+				}else{
+					alert('登陆成功，进入首页')
+					location.href="/home"
+				}
+			} )
+  	},
   }
 }
 </script>
@@ -40,6 +75,7 @@ export default {
  	background: green;
  	text-align: center;
  	line-height: 50px;
+ 	font-size:34px;
  	
  }
  section{
@@ -62,14 +98,15 @@ section .a-reg{
 	text-align: center;
 }
 input{
-	width: 278px;
-	height: 48px;
+	
+	width: 78vw;
+	height: 52px;
 	margin: 10px auto;
-	text-align: center;	
+	text-align: center;
 }
 
 #btn{
-	width: 150px;
+	width: 30vw;
 	height: 58px;
 	font-size: 20px;
 	margin-top:40px;

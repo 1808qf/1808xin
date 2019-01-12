@@ -15,34 +15,46 @@
 		<section>
 			<h1>{{detail}}</h1>
 			<ul class="a-u">
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
+				<li  v-for="item in list" @click="map()"><img :src="'http://10.8.155.42:8080/Airdb'+ item.goodsImg"/></li>
 			</ul>
 		</section>
 	</div>
 </template>
 
 <script>
-
+    import axios from 'axios';
 	export default{
 		name:'Detail',
 		data(){
 			return{
-				detail:""
+				detail:"",
+				list:[],
 			}
 		},
+		mounted(){
+			var _this=this;
+			axios({
+				method:'get',
+				url:"http://101.132.188.237:8080/Airdb/selectAllGoods.do",
+				params:{ }  //name、password是接口参数,跟后台相连
+			}).then((data)=>{
+				console.log(data.data.data)
+			    _this.list=data.data.data
+			})
+			
+		},
+		
+		
 		methods:{
 			tap(){
 				this.$router.go(-1)  //返回上一层路径，也可以/home，就是返回home路径
-			}
+			 },
+			 map(){
+			 	this.$router.push('/home')
+			 }
+
 		},
+		
 		
 	}
 </script>
@@ -127,4 +139,8 @@ section .a-u li{
 	border: 1px solid #ccc;
 	list-style: none;
 }
+ section .a-u li img{
+    width: 32.7vw;
+	height: 100px;
+	}
 </style>
