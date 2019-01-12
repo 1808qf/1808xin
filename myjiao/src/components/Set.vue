@@ -15,7 +15,7 @@
 		<section>
 			<h1>{{detail}}</h1>
 			<ul class="a-u">
-				<li  v-for="item in list" @click="map()"><img :src="'http://10.8.155.42:8080/Airdb'+ item.goodsImg"/></li>
+				<li  v-for="item in list" @click="map()"><img :src="'http://101.132.188.237:8080/Airdb'+ item.goodsImg"/></li>
 			</ul>
 		</section>
 	</div>
