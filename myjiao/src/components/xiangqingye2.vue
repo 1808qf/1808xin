@@ -33,7 +33,11 @@
                 <li>杭州市工业区</li>
                 <li>17:00之前付款预计23号送达</li>
             </ul>
+             
         </div>
+       <div>
+           
+       </div>
     </div>
 </template>
 
@@ -52,7 +56,7 @@ export default {
     mounted() {
         //console.log(shu)
         this.num=this.$route.params.xq-2
-        console.log(this.num)
+        //console.log(this.num)
         var _this=this
         //console.log(this.$route.params.xq)
         
@@ -72,7 +76,7 @@ export default {
       url:'http://101.132.188.237:8080/Airdb/selectByGoodsId.do',
       params:{comGid:'6'}
     }).then((data)=>{
-      console.log(data)
+      //console.log(data)
       
     //   _this.sjz.push(data.data.data[_this.num])
     //   console.log(_this.sjz);
