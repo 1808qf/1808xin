@@ -2,7 +2,7 @@
 <div class="cjia">
     <div>
         <p>总体评价</p>
-        <p>tudiap</p>
+        <van-rate v-model="value" />
         <p>用户印象</p>
         <mt-button type="default">满意</mt-button>
         <mt-button type="default">节能</mt-button>
@@ -26,7 +26,7 @@ export default {
     name:'pingjia',
     data() {
         return {
-            
+            value: 3
         }
     },
 }
