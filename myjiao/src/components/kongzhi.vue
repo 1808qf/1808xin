@@ -5,7 +5,7 @@
 		</header>
 		
 		<section>
-			<div class="a-gua">24°</div>
+			<div class="a-gua">{{wendu}}</div>
 			<ul class="a-feng">
 				<li>风速低</li>
 				<li>风向上</li>
@@ -25,9 +25,9 @@
 					
 				</ul>
 				<ul class="a-fo-u3">
-					<li>-</li>
+					<li @click="jia()"><i class="iconfont icon-jia1"></i></li>
 					<li>温度</li>
-					<li>+</li>
+					<li @click="jian()"><i class="iconfont icon-jian"></i></li>
 					
 				</ul>
 				<ul class="a-fo-u4">
@@ -41,19 +41,40 @@
 </template>
 
 <script>
-
+   import axios from 'axios';
 	export default{
 		name:'Detail',
 		data(){
 			return{
-				detail:""
+				wendu:"0温度",
+				
 			}
 		},
 		methods:{
 			tap(){
 				this.$router.go(-1)  //返回上一层路径，也可以/home，就是返回home路径
+			},
+			jia(){
+				var _this=this;
+				/*axios({
+					method:'get',
+					url:"http://101.132.188.237:8080/Airdb//updateTem.do",
+					params:{airTem:_this.wendu}  
+				}).then((data)=>{  
+				    console.log(data);
+				})*/
+				//console.log(this.wendu)
+				_this.wendu++;
+				
+				
+			},
+			jian(){
+				var _this=this;
+				_this.wendu--;
+				
 			}
 		},	
+		
 	}
 </script>
  
@@ -103,7 +124,7 @@ footer .a-fo-u1{
 	
 }
 footer .a-fo-u1 li{
-	width: 186px;
+	width: 100vw;
 	height: 70px;
 	text-align: center;
 	line-height: 70px;
@@ -115,7 +136,7 @@ footer .a-fo-u2{
 	list-style: none;
 }
 footer .a-fo-u2 li{
-	width: 186px;
+	width: 100vw;
 	height: 70px;
 	text-align: center;
 	line-height: 70px;
@@ -127,7 +148,7 @@ footer .a-fo-u3{
 	list-style: none;
 }
 footer .a-fo-u3 li{
-	width: 186px;
+	width: 100vw;
 	height: 70px;
 	text-align: center;
 	line-height: 70px;
@@ -139,7 +160,7 @@ footer .a-fo-u4{
 	list-style: none;
 }
 footer .a-fo-u4 li{
-	width: 186px;
+	width: 100vw;
 	height: 70px;
 	text-align: center;
 	line-height: 70px;
@@ -147,7 +168,9 @@ footer .a-fo-u4 li{
 	border: 1px solid #666;
 }
 
-
+ .iconfont{
+ 	color:#333;
+ }
 
 
 

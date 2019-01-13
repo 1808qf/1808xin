@@ -15,8 +15,21 @@
 		<section>
 			<h1>{{detail}}</h1>
 			<ul class="a-u">
-				<li  v-for="item in list" :key="item.id" @click="map()"><img :src="'http://101.132.188.237:8080/Airdb'+ item.goodsImg"/></li>
+
+				
+
+				<li  v-for="(item,i) in list" :key="i">
+				<router-link :to="'/MyDevice/'+i">
+					<img :src="'http://101.132.188.237:8080/Airdb'+ item.goodsImg"/>
+					<!--<p>{{'http://101.132.188.237:8080/Airdb'+item.goodsName}}</p>-->
+					<!--<p>{{item.goodsName}}</p>-->
+					
+				</router-link>
+				</li>
+
 			</ul>
+			
+			
 		</section>
 	</div>
 </template>
@@ -36,11 +49,19 @@
 			axios({
 				method:'get',
 				url:"http://101.132.188.237:8080/Airdb/selectAllGoods.do",
-				params:{ }  //name、password是接口参数,跟后台相连
+				params:{ }  
 			}).then((data)=>{
-				console.log(data.data.data)
+			
 			    _this.list=data.data.data
+			    console.log(_this.list);
 			})
+			axios({
+			method:'get',
+			url:"http://101.132.188.237:8080/Airdb/getUserId.do",
+			  //name、password是接口参数,跟后台相连
+		}).then(function(data){
+			console.log(data)	
+			} )
 			
 		},
 		
@@ -49,11 +70,15 @@
 			tap(){
 				this.$router.go(-1)  //返回上一层路径，也可以/home，就是返回home路径
 			 },
-			 map(){
-			 	this.$router.push('/home')
-			 }
+//			 map(){
+//           javascript:if(confirm('是否要添加?'))location.href='home';
+//             
+//			 },
 
 		},
+		
+		
+		
 		
 		
 	}

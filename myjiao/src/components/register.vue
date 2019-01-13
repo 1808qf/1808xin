@@ -64,7 +64,7 @@ export default {
 			var code=data.data.code
 			if(code==1){
 			alert('注册成功')
-				location.href="/#/login"
+			location.href="/#/login"
 			}else{
 				alert("注册失败")
 			}

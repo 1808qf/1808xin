@@ -7,7 +7,10 @@ import "./assets/font/iconfont.css"
 import Vant from 'vant';
 import 'vant/lib/index.css';
 import MintUI from 'mint-ui';
-import 'mint-ui/lib/style.css'
+import 'mint-ui/lib/style.css';
+import store from  './store'
+
+
 Vue.use(MintUI);
 Vue.config.productionTip = false
 Vue.use(Vant);
@@ -16,8 +19,10 @@ Vue.use(Vant);
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
-  template: '<App/>'
+  template: '<App/>',
+  
 })
 
 

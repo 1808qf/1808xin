@@ -108,7 +108,7 @@ export default new Router({
 		   component:MyShop
 		},
 		{
-		   path:'/MyDevice',
+		   path:'/MyDevice/:id',
 		   component:MyDevice
 		},
 		{
