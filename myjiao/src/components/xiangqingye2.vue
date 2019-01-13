@@ -50,12 +50,14 @@ export default {
         return {
             sjz:[],
             num:"",
+            numo:'',
             
         }
     },
     mounted() {
         //console.log(shu)
         this.num=this.$route.params.xq-2
+        this.numo=this.$route.params.xq+2
         //console.log(this.num)
         var _this=this
         //console.log(this.$route.params.xq)
@@ -73,10 +75,10 @@ export default {
     })
       axios({
       method:'get',
-      url:'http://101.132.188.237:8080/Airdb/selectByGoodsId.do',
-      params:{comGid:'6'}
+      url:'http://101.132.188.237:8080/Airdb/SelectGoodsByGoodsId.do',
+      params:{GoodsId:this.numo}
     }).then((data)=>{
-      //console.log(data)
+      console.log(data.data.data)
       
     //   _this.sjz.push(data.data.data[_this.num])
     //   console.log(_this.sjz);
@@ -85,6 +87,7 @@ export default {
     })
     
     },
+    
 }
 
 </script>

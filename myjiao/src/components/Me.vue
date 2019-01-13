@@ -20,7 +20,7 @@
 		<div class="a-wode">
 			 <i class="iconfont icon-31shezhi"></i> 
 			 <span>我的设置</span>
-			 <i class="iconfont icon-xiaojiantou"@click="map()"></i> 
+			 <i class="iconfont icon-xiaojiantou" @click="map()"></i> 
 	    </div>
 	    
 	    <div class="a-bangzhu">

@@ -25,7 +25,7 @@
 		
 		<div class="a-wode"> 
 			 <span>清除缓存</span>
-			 <i class="iconfont icon-xiaojiantou"@click="map()"></i> 
+			 <i class="iconfont icon-xiaojiantou" @click="map()"></i> 
 	    </div>
 	    
 	  <button id="btn">退出登陆</button>

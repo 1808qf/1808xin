@@ -5,20 +5,24 @@
          <h3>购物车</h3>
      </header>
      <section>
-         <van-card
-            num="2"
-            tag="标签"
-            price="2.00"
-            desc="描述信息"  
-            title="商品标题"
-            :thumb="imageURL"
-            origin-price="10.00"
-            >
-            <div slot="footer">
-                <van-button size="mini">按钮</van-button>
-                <van-button size="mini">按钮</van-button>
-            </div>
-</van-card>
+         <ul>
+             <li v-for="item in soot" :key="item.id">
+                <van-card
+                    num="2"
+                    tag="标签"
+                    :price=item.goodsPrice
+                    :desc=item.goodsStyle 
+                    :title=item.goodsName
+                    :thumb="imageURL"
+                    origin-price="10.00"
+                    >
+                    <div slot="footer">
+                        <van-button size="mini">+</van-button>
+                        <van-button size="mini">-</van-button>
+                    </div>
+                </van-card>
+            </li>
+        </ul>
      </section>
      <footer>
         <van-submit-bar
@@ -36,6 +40,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
     name:'gouwuche',
     data() {
@@ -43,16 +48,70 @@ export default {
             imageURL:'',
             checked:'',
             onSubmit1:'',
+            id:'',
+            sid:'',
+            gc:'',
+            to:[],
+            soot:[],
         }
     },
     methods: {
         fanhui(){
             this.$router.go(-1)
         },
-        onSubmit(){
-            console.log('提交完成')
-        }
+         onSubmit(){
+        alert('提交完成')
+        
+         }
     },
+    mounted() {
+        var _this=this;
+        //console.log(this.$route.query.sid)
+        axios({
+      method:'get',
+      url:'http://101.132.188.237:8080/Airdb/getAllCar.do',
+      params:{carUid:33}
+    }).then((data)=>{
+        var srr=[];
+        for(var i=0;i<data.data.data.length;i++){
+            if(srr.indexOf(data.data.data[i].carGid)==-1){
+                srr.push(data.data.data[i].carGid)
+            }
+        }
+        _this.gc=srr
+        console.log(_this.gc)
+      //_this.id=data.data.data.carGid
+      
+      
+      
+      
+    })
+   
+   
+     axios({
+        
+      method:'get',
+      url:'http://101.132.188.237:8080/Airdb/selectAllGoods.do',
+      
+    }).then((data)=>{
+       
+    //   console.log(data.data.data)
+      _this.to=data.data.data
+      //console.log(_this.to)
+      var soo=[]
+      for(var i=0;i<data.data.data.length;i++){
+            if(_this.gc.indexOf(data.data.data[i].goodsId)!=-1){
+                soo.push(data.data.data[i])
+            }
+        }
+        _this.soot=soo
+        console.log(_this.soot)
+      
+    })
+    
+    
+    },
+    
 }
 
 </script>

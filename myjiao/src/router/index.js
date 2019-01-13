@@ -178,6 +178,7 @@ export default new Router({
       component:kefu
 		},
 		{
+			name:'gouwuche',
       path:'/gouwuche',
       component:gouwuche
     },

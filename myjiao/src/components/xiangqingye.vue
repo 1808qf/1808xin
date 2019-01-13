@@ -28,7 +28,7 @@
                 @buy-clicked="onBuyClicked"
                 @add-cart="onAddCartClicked"
                 /> 
-               <mt-button @click="aaa()" type="danger" >立即购买  </mt-button>
+               <mt-button @click="aaa()" type="danger" > 立即购买 </mt-button>
 
             
  
@@ -47,11 +47,14 @@ export default {
         return {
             
            goods:{},
-            goodsId:'',
+            
             quota:'',
             quatoUsed:'',
             quotaUsed:'',
             showBase:'',
+            puota:'6',
+            quotaUsed:'6',
+            quotaUsed:'6',
                  sku: {
   // 所有sku规格类目与其值的从属关系，比如商品有颜色和尺码两大类规格，颜色下面又有红色和蓝色两个规格值。
   // 可以理解为一个商品可以有多个规格类目，一个规格类目下可以有多个规格值。
@@ -61,12 +64,12 @@ export default {
       v: [
         {
           id: '30349', // skuValueId：规格值 id
-          name: '红色', // skuValueName：规格值名称
-          imgUrl: 'https://img.yzcdn.cn/1.jpg' // 规格类目图片，只有第一个规格类目可以定义图片
+          name: 's', // skuValueName：规格值名称
+          imgUrl: 'http://101.132.188.237:8080/Airdb/img/guabi.webp' // 规格类目图片，只有第一个规格类目可以定义图片
         },
         {
           id: '1215',
-          name: '蓝色',
+          name: 'm',
           imgUrl: 'https://img.yzcdn.cn/2.jpg'
         }
       ],
@@ -76,7 +79,7 @@ export default {
   // 所有 sku 的组合列表，比如红色、M 码为一个 sku 组合，红色、S 码为另一个组合
   list: [
     {
-      id: 2259, // skuId，下单时后端需要
+      id: 3, // skuId，下单时后端需要
       price: 100, // 价格（单位分）
       s1: '1215', // 规格类目 k_s 为 s1 的对应规格值 id
       s2: '1193', // 规格类目 k_s 为 s2 的对应规格值 id
@@ -84,7 +87,7 @@ export default {
       stock_num: 110 // 当前 sku 组合对应的库存
     }
   ],
-  price: '1.00', // 默认价格（单位元）
+  price: '11111', // 默认价格（单位元）
   stock_num: 227, // 商品总库存
   collection_id: 2261, // 无规格商品 skuId 取 collection_id，否则取所选 sku 组合对应的 id
   none_sku: false, // 是否无规格商品
@@ -104,11 +107,11 @@ goods: {
   // 商品标题
   title: '测试商品',
   // 默认商品 sku 缩略图
-  picture: 'https://img.yzcdn.cn/1.jpg'
+  picture: 'http://101.132.188.237:8080/Airdb/img/guabi.webp'
 },
 customStepperConfig: {
   // 自定义限购文案
-  quotaText: '每次限购xxx件',
+  quotaText: '每次限购5件',
   // 自定义步进器超过限制时的回调
   handleOverLimit: (data) => {
     const { action, limitType, quota, quotaUsed } = data;
@@ -145,7 +148,7 @@ messageConfig: {
 },
 skuData: {
   // 商品 id
-  goodsId: '946755',
+  goodsId: '3',
   // 留言信息
   messages: {
     message_0: '12',
@@ -175,16 +178,71 @@ skuData: {
             this.$router.go(-1)
         },
         foo(){
-            console.log(33)
-            location.href='/#/gouwuche'
+            var _this=this;
+            
+            //console.log(_this.$route.params.xq)
+            axios({
+      method:'get',
+      url:'http://101.132.188.237:8080/Airdb/addCar.do',
+      params:{carUid:33, carGcount:5,carGid:_this.$route.params.xq}
+    }).then((data)=>{
+      
+    })
+    
+           alert('添加成功')
+           this.$router.push({
+                name:'gouwuche',
+                path:'/gouwuche',
+                query:{
+                    sid:_this.$route.params.xq
+                }
+            })
+
         },
         aaa(){
             this.showBase="true"
+            console.log(this.sku.skuData.selectedNum)
+        },
+        onBuyClicked(){
+            //console.log(22)
+             var _this=this;
+        
+        axios({
+      method:'get',
+      url:'http://101.132.188.237:8080/Airdb/SelectGoodsByGoodsId.do',
+      params:{GoodsId:this.$route.params.xq}
+    }).then((data)=>{
+      console.log(data.data.data)
+     
+      _this.skuData.goodsId=data.data.data.goodsId
+       //console.log( _this.sku.price)
+    //   _this.sjz.push(data.data.data[_this.num])
+    //   console.log(_this.sjz);
+      
+      
+    })
         }
     },
     mounted() {
+        var _this=this;
         //console.log(this.$route.params.xq)
+        axios({
+      method:'get',
+      url:'http://101.132.188.237:8080/Airdb/SelectGoodsByGoodsId.do',
+      params:{GoodsId:this.$route.params.xq}
+    }).then((data)=>{
+      console.log(data.data.data)
+      _this.goods.picture="http://101.132.188.237:8080/Airdb/"+data.data.data.goodsImg
+      _this.sku.price=data.data.data.goodsPrice
+      //_this.skuData.goodsId=data.data.data.goodsId
+       //console.log( _this.sku.price)
+    //   _this.sjz.push(data.data.data[_this.num])
+    //   console.log(_this.sjz);
+      
+      
+    })
     },
+    
 
 }
 
@@ -197,6 +255,7 @@ skuData: {
  
 }
 header{
+    height:6%;
     display:flex;
     justify-content:space-around;
     border: 1px solid #bbbbbb;
