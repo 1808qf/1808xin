@@ -141,10 +141,10 @@ footer{
   flex: 1;
 }
 .csousuo{
-  width: 67%;
+  width: 62%;
 }
 .csousuo input{
-      margin: 18px 0 0 30px;
+     width: 100%;
           height: 49%;
     border-radius: 5px;
 }
