@@ -3,13 +3,15 @@
 		<div class="a-home-1">
 			<span @click="map()">设备</span>
 			<span @click="pap()">场景</span>
+			<span @click="ccc()">登陆</span>
+			<span @click="ddd()">注册</span>
 		</div>
 		
 		<img src="../assets/imgs/a-shouye1.jpg" alt="" />
 		<h1 class="a-t">您还没有添加设备</h1>
 		<p  class="a-p" @click="tap()"><i class="iconfont icon-chucuo"></i><span >添加设备</span></p>
 		
-		<footer><h1>详情</h1></footer>
+		
 		
 		<ul>
           <router-link :to="'/kongzhi/'+item.goodsId" tag="li" v-for="item in str"  :key="item.id">
@@ -42,6 +44,13 @@
 			tap(){
 				this.$router.push('/Set')
 			},
+			ccc(){
+				this.$router.push('/login')
+			},
+			ddd(){
+				this.$router.push('/register')
+			},
+
 			
 		},
 		mounted(){

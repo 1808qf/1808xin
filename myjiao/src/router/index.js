@@ -182,7 +182,7 @@ export default new Router({
       path:'/gouwuche',
       component:gouwuche
     },
-   
+		
 		
 		
 		
