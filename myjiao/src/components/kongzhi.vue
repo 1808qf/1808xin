@@ -5,7 +5,7 @@
 		</header>
 		
 		<section>
-			<div class="a-gua">{{wendu}}</div>
+			<div class="a-gua">{{wendu}}℃</div>
 			<ul class="a-feng">
 				<li>风速低</li>
 				<li>风向上</li>
@@ -46,7 +46,7 @@
 		name:'Detail',
 		data(){
 			return{
-				wendu:"0温度",
+				wendu:"0",
 				
 			}
 		},
