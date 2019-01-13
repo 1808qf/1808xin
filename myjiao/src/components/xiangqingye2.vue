@@ -2,9 +2,9 @@
 <div>
     <div class="clunbo">
         <mt-swipe :auto="4000">
-          <mt-swipe-item class="cone"><img src="./assets/vue1.jpg"/></mt-swipe-item>
-          <mt-swipe-item class="ctwo"><img src="./assets/vue2.jpg"/></mt-swipe-item>
-          <mt-swipe-item class="cserry"><img src="./assets/vue3.jpg"/></mt-swipe-item>
+          <mt-swipe-item class="cone"><img src="../assets/vue1.jpg"/></mt-swipe-item>
+          <mt-swipe-item class="ctwo"><img src="../assets/vue2.jpg"/></mt-swipe-item>
+          <mt-swipe-item class="cserry"><img src="../assets/vue3.jpg"/></mt-swipe-item>
         </mt-swipe>
 
       </div>
@@ -87,7 +87,7 @@ export default {
     })
     
     },
-    
+   
 }
 
 </script>
