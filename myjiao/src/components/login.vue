@@ -55,7 +55,7 @@ export default {
 					//this.$store.common("cun",_this.token)
 					//console.log(this.$store.store.token)
 					// location.href="/cayxm/home"
-					this.$router.push("/home")
+					_this.$router.push("/home")
 				}
 			} )
 
