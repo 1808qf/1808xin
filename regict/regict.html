@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <title>Document</title>
+    <script src="react.min.js"></script>
+    <script src="react-dom.min.js"></script>
+    <script src="browser.min.js"></script>
+    <style>
+        .tit{
+            color: cyan;
+        }
+    </style>
+</head>
+<body>
+    <div id="out">
+
+    </div>
+    
+</body>
+<script type="text/babel">
+    var str='hello word';
+    
+    var sty={
+        color:'red'
+    }
+    var tap=function(){
+        console.log('4444');
+        
+    }
+    var styu='asdfgh';
+    var App=React.createClass({
+        tap2(msg){
+           console.log(msg);
+            
+        },
+
+        render() {
+            return(
+                <div>
+                    <div className='tit'>react 15 zujian </div>
+                    <h2 style={sty}> {str}</h2>
+                    <h3 style={this.stys}>{styu}</h3>
+                    <input type="text"/>
+                    <button onClick={tap}>事件</button>
+                    <button onClick={this.taps.tap1}>事件11</button>
+                    <button onClick={this.tap2.bind(this,"hello hi")}>事件555</button>
+                </div>
+            )
+        },
+    })
+    App.prototype.stys={
+        color:'pink'
+    }
+    App.prototype.taps={
+        tap1:function(){
+            console.log('hihihihi')
+           
+        }
+    }
+    ReactDOM.render(<App/>,document.getElementById('out'))
+</script>
+</html>
