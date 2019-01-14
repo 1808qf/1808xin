@@ -54,7 +54,8 @@ export default {
 					alert('登陆成功，进入首页')
 					//this.$store.common("cun",_this.token)
 					//console.log(this.$store.store.token)
-					location.href="/home"
+					// location.href="/cayxm/home"
+					this.$router.push("/home")
 				}
 			} )
 
